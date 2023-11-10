@@ -47,7 +47,7 @@ export default function UserTable() {
     <div>
       <h1>Lista de Usuários</h1>
       <div>
-        <label htmlFor="inputId">Usuarios </label>
+        <label htmlFor="inputId"> Insira o ID do Usuario </label>
         <input
           type="text"
           id="inputId"
@@ -80,7 +80,7 @@ export default function UserTable() {
         </tbody>
         <tfoot>
           <tr>
-            <td colSpan="5">Total de Usuários: {users.length}</td>
+            {/* <td colSpan="5">Total de Usuários: {users.length}</td> */}
           </tr>
         </tfoot>
       </table>
