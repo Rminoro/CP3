@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         
         <Cabecalho/>
-          <h1>PRODUTOS DIVERSOS</h1>
+          <h1></h1>
           {children}
         <Rodape/>
         
