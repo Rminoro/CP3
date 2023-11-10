@@ -1,4 +1,4 @@
-// use-client/UserTable.js
+// // use-client/UserTable.js
 "use client";
 import { useEffect, useState } from "react";
 
@@ -6,11 +6,9 @@ export default function UserTable() {
   const [users, setUsers] = useState([]);
   const [inputId, setInputId] = useState('');
 
-  const fetchData = async () => {
+  const fetchData = async (url) => {
     try {
-    //   const response = await fetch(`http://localhost:3000/api/base/users/[id]`);
-    const response = await fetch(`http://localhost:3000/api/users/${inputId}`);
-
+      const response = await fetch(url);
 
       if (!response.ok) {
         throw new Error(`Erro HTTP! Status: ${response.status}`);
@@ -40,21 +38,28 @@ export default function UserTable() {
   };
 
   const handleFetchData = () => {
-    fetchData();
+    const url = inputId ? `http://localhost:3000/api/users/${inputId}` : `http://localhost:3000/api/users`;
+    fetchData(url);
+  };
+
+  const handleShowAll = () => {
+    const url = `http://localhost:3000/api/users/[id]`;
+    fetchData(url);
   };
 
   return (
     <div>
       <h1>Lista de Usuários</h1>
       <div>
-        <label htmlFor="inputId"> Insira o ID do Usuario </label>
+        <label htmlFor="inputId">Insira o ID do Usuário: </label>
         <input
           type="text"
           id="inputId"
           value={inputId}
           onChange={handleInputChange}
         />
-        <button onClick={handleFetchData}>Buscar Usuários</button>
+        <button onClick={handleFetchData}>Buscar Usuário</button>
+        <button onClick={handleShowAll}>Mostrar Todos</button>
       </div>
 
       <table>
@@ -80,7 +85,7 @@ export default function UserTable() {
         </tbody>
         <tfoot>
           <tr>
-            {/* <td colSpan="5">Total de Usuários: {users.length}</td> */}
+            <td colSpan="5">Total de Usuários: {users.length}</td>
           </tr>
         </tfoot>
       </table>
