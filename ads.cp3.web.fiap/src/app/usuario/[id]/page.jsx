@@ -1,11 +1,10 @@
-// // use-client/UserTable.js
 "use client";
+import './style.css'; 
 import { useEffect, useState } from "react";
 
 export default function UserTable() {
   const [users, setUsers] = useState([]);
   const [inputId, setInputId] = useState('');
-
   const fetchData = async (url) => {
     try {
       const response = await fetch(url);
@@ -48,21 +47,21 @@ export default function UserTable() {
   };
 
   return (
-    <div>
-      <h1>Lista de Usuários</h1>
-      <div>
-        <label htmlFor="inputId">Insira o ID do Usuário: </label>
-        <input
-          type="text"
-          id="inputId"
-          value={inputId}
-          onChange={handleInputChange}
-        />
-        <button onClick={handleFetchData}>Buscar Usuário</button>
-        <button onClick={handleShowAll}>Mostrar Todos</button>
-      </div>
+    <div className="user-table-container">
+    <h1>Lista de Usuários</h1>
+    <div className="search-bar">
+      <label htmlFor="inputId">Insira o ID do Usuário: </label>
+      <input
+        type="text"
+        id="inputId"
+        value={inputId}
+        onChange={handleInputChange}
+      />
+      <button className="search-button" onClick={handleFetchData}>Buscar Usuário</button>
+      <button className="show-all-button" onClick={handleShowAll}>Mostrar Todos</button>
+    </div>
 
-      <table>
+    <table className="user-table">
         <thead>
           <tr>
             <th>Id</th>
